@@ -1,24 +1,38 @@
 	h1,h2,h3{
-			color:red;
-			background-color:green; 
-			text-transform:uppercase;
-		}
-		
-		.s1{
-			color:pink;
-			background-color:red;
-		}
-		
-		.cen{
+			color:blue;
+			background-color:pink;
 			text-align:center;
+		}
+		
+		.test1{
+			background-color:green;
+			text-align:right;
+			color:white;
+		}
+		.test2{
+			background-color:green;
+			text-align:left;
+			color:white;
+		}
+		
+		.underline{
 			text-decoration:underline;
-		}
-		
-		#s2{
-			color:yellow;
-			background-color:blue;
-		}
-		
-		h4.s3{
 			text-transform:uppercase;
 		}
+		
+		
+		#demo{
+			background-color:blue;
+			text-align:center;
+			color:white;
+		}
+		
+		
+		
+		h5.box{
+			width:100px;
+			height:100px;
+			background-color:red;
+			color:white;
+		}
+		
