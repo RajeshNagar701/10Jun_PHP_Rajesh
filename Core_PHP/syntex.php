@@ -1,36 +1,35 @@
+
+<h1>Hi hello</h1>
+<h1>10+10</h1>
+
 <?php
 
-echo "echo use for print";
+echo 10+10;
+
+echo "<h1>Hi i am php script</h1>";
 
 
-echo "<h1> HTML code use in php</h1>";
+echo $name="Rajesh nagar";
+echo "<h1>" . $name . "</h1>";
 
-$varname="Rajesh";
-
-echo $varname . "<br>";
-
-
-echo "<h1>My name is " . $varname . "</h1>";
+echo "Hi i am : " . $name;
 
 
-$a=10;
-$b=20;
-$sum=$a+$b;
 
-echo "<h1> Sum of a & b are : ".$sum ."</h1>";
+//syntex  
+<?php ?>     <? ?>
 
-// Single line comment
-
+//comment This is a single-line comment
 
 /*
-multiple
-line
-comment
+
+sadnjlansd
+as/dnkl;asndmnasd
+asdn;lasdla;slmd;m
+
 */
 
 ?>
 
 
-<!--
-HTML COMMENT
--->
+

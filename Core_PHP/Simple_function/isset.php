@@ -4,16 +4,17 @@
 // check value of variable is set or not
 $p;  
 
+
+//echo isset($p)
+
 if(isset($p))
 {
-	echo $p;
+	echo " var is set ";
 }
 else
 {
-	echo "p is not set";
+	echo " var is not set ";
 }	
 
-
-//===========================
 
 ?>

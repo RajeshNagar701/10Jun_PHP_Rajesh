@@ -1,12 +1,30 @@
 <?php
 
 /*
- 2 tYPES OF function_exists
+ 2 tYPES OF function_exists  block of code
  
- 1) BUILD IN function  predifined count()
- 2) USER defined  function sum()
+ 1) BUILD IN function  predifined count()  // php function   print("hello")
+ 2) USER defined  function sum(){}
  
 */
+
+
+//1) BUILD IN function  predifined count()
+
+
+
+$name="Raj";
+echo strlen($name);
+
+echo "<br>";
+
+$sum=3584;
+var_dump($sum);
+print($sum);
+
+
+
+
 
 
 
@@ -61,22 +79,17 @@ sum()
 
 
 // return
-/
+/*
 function sum()
 {
 	return 5+7;
 }
 echo sum();
+*/
+
+//===========================================================
 
 
-
-//=================== Buildin function
-
-$a=25;
-$name="Raj nagar";
-
-echo var_dump($a);
-echo var_dump($name);
 
 
 
