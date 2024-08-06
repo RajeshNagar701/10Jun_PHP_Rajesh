@@ -5,9 +5,7 @@ $a=array("name"=>"KEYUR","email"=>"raj@gmail.com","mobile"=>"124567891"); // sap
 print_r($a);
 
 echo "<br>";
-print_r(array_keys($a));
 
-echo "<br>";
 
 $key=array_keys($a);
 
@@ -16,19 +14,12 @@ foreach($key as $k)
 	echo $k."<br>";
 }
 
-echo "<br>";
-print_r(array_values($a));
+$values=array_values($a);
 
-echo "<br>";
-
-$value=array_values($a);
-
-foreach($value as $v)
+foreach($values as $v)
 {
 	echo $v."<br>";
 }
-
-
 
 
 
