@@ -63,10 +63,10 @@
                         <a href="#"><i class="fa fa-yelp "></i> Shop <span class="fa arrow"></span></a>
                          <ul class="nav nav-second-level">
                             <li>
-                                <a href="add_shop.php"><i class="fa fa-coffee"></i>Add Shop</a>
+                                <a href="add_shop"><i class="fa fa-coffee"></i>Add Shop</a>
                             </li>
                             <li>
-                                <a href="manage_shop.php"><i class="fa fa-flash "></i>Manage Shop</a>
+                                <a href="manage_shop"><i class="fa fa-flash "></i>Manage Shop</a>
                             </li>
                             
                         </ul>
@@ -75,44 +75,44 @@
                         <a href="#"><i class="fa fa-yelp "></i> Food Item <span class="fa arrow"></span></a>
                          <ul class="nav nav-second-level">
                             <li>
-                                <a href="add_food.php"><i class="fa fa-coffee"></i>Add Food</a>
+                                <a href="add_food"><i class="fa fa-coffee"></i>Add Food</a>
                             </li>
                             <li>
-                                <a href="manage_food.php"><i class="fa fa-flash "></i>Manage Food</a>
+                                <a href="manage_food"><i class="fa fa-flash "></i>Manage Food</a>
                             </li>
                             
                         </ul>
                     </li>
                     <li>
-                        <a href="manage_cart.php"><i class="fa fa-flash "></i>Cart Item </a>
+                        <a href="manage_cart"><i class="fa fa-flash "></i>Cart Item </a>
                         
                     </li>
 					<li>
-                        <a href="manage_order.php"><i class="fa fa-flash "></i>Order</a>  
+                        <a href="manage_order"><i class="fa fa-flash "></i>Order</a>  
                     </li>
 					<li>
-                        <a href="manage_customer.php"><i class="fa fa-flash "></i>Customer</a>  
+                        <a href="manage_customer"><i class="fa fa-flash "></i>Customer</a>  
                     </li>
 					<li>
-                        <a href="manage_order.php"><i class="fa fa-flash "></i>Order</a>  
+                        <a href="manage_order"><i class="fa fa-flash "></i>Order</a>  
                     </li>
 					<li>
                         <a href="#"><i class="fa fa-yelp "></i> Employee <span class="fa arrow"></span></a>
                          <ul class="nav nav-second-level">
                             <li>
-                                <a href="add_emp.php"><i class="fa fa-coffee"></i>Add Employee</a>
+                                <a href="add_emp"><i class="fa fa-coffee"></i>Add Employee</a>
                             </li>
                             <li>
-                                <a href="manage_emp.php"><i class="fa fa-flash "></i>Manage Employee</a>
+                                <a href="manage_emp"><i class="fa fa-flash "></i>Manage Employee</a>
                             </li>
                             
                         </ul>
                     </li>
 					<li>
-                        <a href="manage_feedback.php"><i class="fa fa-flash "></i>Feedback</a>  
+                        <a href="manage_feedback"><i class="fa fa-flash "></i>Feedback</a>  
                     </li>
 					<li>
-                        <a href="manage_contact.php"><i class="fa fa-flash "></i>Contact</a>  
+                        <a href="manage_contact"><i class="fa fa-flash "></i>Contact</a>  
                     </li>	
                 </ul>
 

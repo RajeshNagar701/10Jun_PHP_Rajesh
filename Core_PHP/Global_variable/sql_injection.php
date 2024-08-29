@@ -12,7 +12,8 @@ wish to store and use.
 SQL Injection is a technique which allows attackers to manipulate the SQL 
 ("Structured Query Language") 
 
-the developer of the web application is using. This typically happens because of lack of data sanitization.
+the developer of the web application is using. 
+This typically happens because of lack of data sanitization.
  
 SQL is used regularly by developers to access database resources. 
 
