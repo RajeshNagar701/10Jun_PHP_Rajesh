@@ -26,24 +26,31 @@
                                     <thead>
                                         <tr>
                                             <th>#ID</th>
-                                            <th>Name</th>
-                                            <th>Address</th>
-                                            <th>Email</th>
+                                            <th>User Name</th>
+                                            <th>Gender</th>
+                                            <th>Lag</th>
 											<th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                       <?php 
+									foreach($customer_arr as $data)
+									{
+									?>
                                         <tr>
-                                            <td>1</td>
-                                            <td>Mayur Restuarant</td>
-                                            <td>Maninagar</td>
-                                            <td>mayur@gmail.com</td>
+                                            <td><?php echo $data->id; ?></td>
+                                            <td><?php echo $data->user_name; ?></td>
+                                            <td><?php echo $data->gender; ?></td>
+                                            <td><?php echo $data->lag; ?></td>
 											<td>
 												<a href="#" class="btn btn-primary">Edit</a>
 												<a href="#" class="btn btn-danger">Delete</a>
 												<a href="#" class="btn btn-info">Status</a>
 											</td>
                                         </tr>
+                                    <?php
+									}
+									?>   
                                        
                                     </tbody>
                                 </table>

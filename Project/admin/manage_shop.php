@@ -26,25 +26,31 @@
                                     <thead>
                                         <tr>
                                             <th>#ID</th>
-                                            <th>Name</th>
+                                            <th>Shop Name</th>
                                             <th>Address</th>
-                                            <th>Email</th>
+                                            <th>Location</th>
 											<th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+									<?php 
+									foreach($restaurant_arr as $data)
+									{
+									?>
                                         <tr>
-                                            <td>1</td>
-                                            <td>Mayur Restuarant</td>
-                                            <td>Maninagar</td>
-                                            <td>mayur@gmail.com</td>
+                                            <td><?php echo $data->id; ?></td>
+                                            <td><?php echo $data->name; ?></td>
+                                            <td><?php echo $data->address; ?></td>
+                                            <td><?php echo $data->loc_id; ?></td>
 											<td>
 												<a href="#" class="btn btn-primary">Edit</a>
 												<a href="#" class="btn btn-danger">Delete</a>
 												<a href="#" class="btn btn-info">Status</a>
 											</td>
                                         </tr>
-                                       
+                                    <?php
+									}
+									?>   
                                     </tbody>
                                 </table>
                             </div>

@@ -1,9 +1,15 @@
 <?php
 
-class control
+include_once('model.php'); // 1 step load model page 
+
+ 
+class control extends model // 2 step extend model 
 {
 	function __construct()
 	{
+		
+		model::__construct(); // 3 call model contruct so database connectivity
+		
 		$path=$_SERVER['PATH_INFO'];	
 		
 		switch($path)
@@ -18,6 +24,7 @@ class control
 				include_once('add_shop.php');
 			break;
 			case '/manage_shop':
+				$restaurant_arr=$this->select('restaurant');
 				include_once('manage_shop.php');
 			break;
 			case '/add_food':
@@ -25,6 +32,10 @@ class control
 			break;
 			case '/manage_food':
 				include_once('manage_food.php');
+			break;
+			case '/manage_customer':
+				$customer_arr=$this->select('customer');
+				include_once('manage_customer.php');
 			break;
 			case '/manage_cart':
 				include_once('manage_cart.php');
