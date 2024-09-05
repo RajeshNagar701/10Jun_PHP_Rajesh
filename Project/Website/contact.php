@@ -61,11 +61,11 @@
                            <h1 class="contact_taital">Get In Touch</h1>
                            <form action="">
                               <div class="mail_section_1">
-                                 <input type="text" class="mail_text" placeholder="Name" name="Name">
-                                 <input type="text" class="mail_text" placeholder="Phone Number" name="Phone Number"> 
-                                 <input type="text" class="mail_text" placeholder="Email" name="Email">
-                                 <textarea class="massage-bt" placeholder="Massage" rows="5" id="comment" name="Massage"></textarea>
-                                 <div class="send_bt"><a href="#">SEND</a></div>
+                                 <input type="text" class="mail_text" placeholder="Name" name="name">
+                                 <input type="text" class="mail_text" placeholder="Phone Number" name="mobile"> 
+                                 <input type="text" class="mail_text" placeholder="Email" name="email">
+                                 <textarea class="massage-bt" placeholder="Massage" rows="5" id="comment" name="msg"></textarea>
+                                 <input class="btn btn-success mt-5" type="submit" name="submit" value="Send">
                               </div>
                            </form>
                         </div>

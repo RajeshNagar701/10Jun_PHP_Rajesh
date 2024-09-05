@@ -58,14 +58,24 @@
                   <div class="contact_section_2">
                      <div class="row">
                         <div class="col-md-12">
-                           <h1 class="contact_taital">Login Here</h1>
-                           <form action="" method="post">
+                           <h1 class="contact_taital">Signup Here</h1>
+                           <form action="" method="post" enctype="multipart/form-data">
                               <div class="mail_section_1">
-                                 <input type="email" class="mail_text" placeholder="Email" name="email">
-                                 <input type="password" class="mail_text" placeholder="Password" name="password"> 
-                           
-                                 <div class="send_bt"><a href="#">Login</a></div>
-								 <a href="signup" style="color:white">If you not registered then Signup Here</a>
+                                 <input type="email" name="user_name" class="mail_text" placeholder="Email" />
+                                 <input type="password" name="pass" class="mail_text" placeholder="Password"/> 
+								 <div class="text-white">
+								 Gender :
+								 Male :<input type="radio" name="gender" value="Male" /> 
+								 Female :<input type="radio" name="gender" value="Female" /> 
+								 </div>	
+								 <div class="text-white">
+								 Lag :
+								 Hindi :<input type="checkbox" name="lag[]" value="Hindi" /> 
+								 Gujarati :<input type="checkbox" name="lag[]" value="Gujarati" /> 
+								 English :<input type="checkbox" name="lag[]" value="English" /> 
+								 </div>	
+								 <input type="file" name="img" class="mail_text"/> 
+                                 <input class="btn btn-success mt-5" type="submit" name="signup" value="Signup">
                               </div>
                            </form>
                         </div>
