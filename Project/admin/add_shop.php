@@ -19,73 +19,38 @@
                            Add Shop
                         </div>
                         <div class="panel-body">
-                            <form role="form">
+                            <form role="form" method="post" enctype="multipart/form-data">
                                         <div class="form-group">
                                             <label>Enter Name</label>
-                                            <input class="form-control" type="text">
-                                            <p class="help-block">Help text here.</p>
+                                            <input name="name" class="form-control" type="text">
                                         </div>
-									<div class="form-group">
-                                            <label>Enter Email</label>
-                                            <input class="form-control" type="text">
-                                     <p class="help-block">Help text here.</p>
-                                        </div>
-                                            <div class="form-group">
-                                            <label>Text area</label>
-                                            <textarea class="form-control" rows="3"></textarea>
+										<div class="form-group">
+                                            <label>Upload Image</label>
+                                            <input name="img" class="form-control" type="file">
                                         </div>
 										<div class="form-group">
                                             <label>Select Example</label>
-                                            <select class="form-control">
-                                                <option>One Vale</option>
-                                                <option>Two Vale</option>
-                                                <option>Three Vale</option>
-                                                <option>Four Vale</option>
+                                            <select name="loc_id" class="form-control">
+												<option>Select City</option>
+											<?php
+											foreach($loca_arr as $w)
+											{
+											?>
+                                                <option value="<?php echo $w->id?>"><?php echo $w->loc_name?></option>
+											<?php
+											}
+											?>	
                                             </select>
                                         </div>
 										<div class="form-group">
-                                            <label>Checkboxes</label>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" value="">Checkbox Example One
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" value="">Checkbox Example Two
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" value="">Checkbox Example Three
-                                                </label>
-                                            </div>
-                                  <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" value="">Checkbox Example Four
-                                                </label>
-                                            </div>
+                                            <label>Address</label>
+                                            <textarea name="address" class="form-control"></textarea>
                                         </div>
-									<hr>
-									<div class="form-group">
-                                            <label>Radio Button Examples</label>
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">Radio Example One
-                                                </label>
-                                            </div>
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Radio Example Two
-                                                </label>
-                                            </div>
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">Radio Example Three
-                                                </label>
-                                            </div>
+										<div class="form-group">
+                                            <label>Google url</label>
+                                            <input name="google" class="form-control" type="url"/ ></input>
                                         </div>
-                                        <button type="submit" class="btn btn-info">Send Message </button>
+                                        <button type="submit"  name="submit" class="btn btn-info">Submit</button>
 
                                     </form>
                             </div>

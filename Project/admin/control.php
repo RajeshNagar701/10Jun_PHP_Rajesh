@@ -21,10 +21,35 @@ class control extends model // 2 step extend model
 				include_once('dashboard.php');
 			break;
 			case '/add_shop':
+				$loca_arr=$this->select("location");
+				if(isset($_REQUEST['submit']))
+				{
+					$name=$_REQUEST['name'];
+					$loc_id=$_REQUEST['loc_id'];
+					$address=$_REQUEST['address']; 
+					$google=$_REQUEST['google'];
+					
+					$img=$_FILES['img']['name'];
+					
+					$data=array("name"=>$name,"loc_id"=>$loc_id,"address"=>$address,"google"=>$google,"img"=>$img);
+					
+					$res=$this->insert('restaurant',$data);
+					if($res)
+					{					
+						$path="assets/img/restuarant/".$img;
+						$tmp_img=$_FILES['img']['tmp_name'];
+						move_uploaded_file($tmp_img,$path);
+						
+						echo "<script>
+							alert('Data Add Success');
+							window.location='add_shop';
+						</script>";
+					}
+				}
 				include_once('add_shop.php');
 			break;
 			case '/manage_shop':
-				$restaurant_arr=$this->select('restaurant');
+				$restaurant_arr=$this->select_join2('restaurant','location','restaurant.loc_id=location.id');
 				include_once('manage_shop.php');
 			break;
 			case '/add_food':

@@ -26,6 +26,7 @@
                                     <thead>
                                         <tr>
                                             <th>#ID</th>
+											<th>Profile</th>
                                             <th>Shop Name</th>
                                             <th>Address</th>
                                             <th>Location</th>
@@ -39,9 +40,10 @@
 									?>
                                         <tr>
                                             <td><?php echo $data->id; ?></td>
+											<td><a href="<?php echo $data->google;?>"><img src="assets/img/restuarant/<?php echo $data->img?>" width="50px"/></a></td>
                                             <td><?php echo $data->name; ?></td>
                                             <td><?php echo $data->address; ?></td>
-                                            <td><?php echo $data->loc_id; ?></td>
+                                            <td><?php echo $data->loc_name; ?></td>
 											<td>
 												<a href="#" class="btn btn-primary">Edit</a>
 												<a href="#" class="btn btn-danger">Delete</a>
