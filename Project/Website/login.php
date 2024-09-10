@@ -61,10 +61,11 @@
                            <h1 class="contact_taital">Login Here</h1>
                            <form action="" method="post">
                               <div class="mail_section_1">
-                                 <input type="email" class="mail_text" placeholder="Email" name="email">
-                                 <input type="password" class="mail_text" placeholder="Password" name="password"> 
-                           
-                                 <div class="send_bt"><a href="#">Login</a></div>
+                                 <input type="email" class="mail_text" placeholder="Email" name="user_name">
+                                 <input type="password" class="mail_text" placeholder="Password" name="pass"> 
+								<br>	
+                                 <button class="btn btn-success" type="submit" name="login">Login</button>
+								 <br>
 								 <a href="signup" style="color:white">If you not registered then Signup Here</a>
                               </div>
                            </form>

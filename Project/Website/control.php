@@ -50,6 +50,32 @@ class control extends model // 2 step extend model
 				include_once('contact.php');
 			break;
 			case '/login':
+				if(isset($_REQUEST['login']))
+				{
+					$user_name=$_REQUEST['user_name'];
+					$pass=md5($_REQUEST['pass']); // pass encrypt
+					
+					$where=array("user_name"=>$user_name,"pass"=>$pass,"status"=>"Unblock");
+					
+					$res=$this->select_where('customer',$where);
+					$ans=$res->num_rows;  // row wise check condtion 
+					if($ans==1) // 1 means true
+					{
+						echo "<script>
+							alert('Login Success');
+							window.location='index';
+						</script>";
+					}
+					else
+					{
+						echo "<script>
+							alert('Login Failed');
+							window.location='login';
+						</script>";
+					}
+					
+					
+				}
 				include_once('login.php');
 			break;
 			case '/signup':

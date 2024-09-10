@@ -14,7 +14,33 @@ class control extends model // 2 step extend model
 		
 		switch($path)
 		{
-			case '/index':
+			case '/admin':
+				if(isset($_REQUEST['login']))
+				{
+					$admin_email=$_REQUEST['admin_email'];
+					$admin_pass=md5($_REQUEST['admin_pass']); // pass encrypt
+					
+					$where=array("admin_email"=>$admin_email,"admin_pass"=>$admin_pass);
+					
+					$res=$this->select_where('admins',$where);
+					$ans=$res->num_rows;  // row wise check condtion 
+					if($ans==1) // 1 means true
+					{
+						echo "<script>
+							alert('Login Success');
+							window.location='dashboard';
+						</script>";
+					}
+					else
+					{
+						echo "<script>
+							alert('Login Failed');
+							window.location='admin';
+						</script>";
+					}
+					
+					
+				}
 				include_once('login.php');
 			break;
 			case '/dashboard':
