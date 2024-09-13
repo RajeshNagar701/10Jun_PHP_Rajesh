@@ -15,7 +15,14 @@
 			  </form>
 			  <a class="logo" href="/"><img src="images/logo.png"></a></a>
 			  <span class="toggle" onclick="openNav()"><i class="fa fa-bars"></i></span>
-			  <div class="login_text"><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i><span class="padding_left10">Email : railfood@gmail.com</span></a></div>
+			  <?php
+			  if(isset($_SESSION['user']))
+			  {
+			  ?>
+			  <div class="login_text"><a href="#"><i class="fa fa-user" aria-hidden="true"></i><span class="padding_left10">Hi .. <?php echo $_SESSION['user']?></span></a></div>
+			  <?php
+			  }
+			  ?>
 		   </nav>
 		</div>
 	 </div>

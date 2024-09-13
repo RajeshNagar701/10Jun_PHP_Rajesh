@@ -7,6 +7,7 @@ class control extends model // 2 step extend model
 {
 	function __construct()
 	{
+		session_start();
 		
 		model::__construct(); // 3 call model contruct so database connectivity
 		
@@ -26,6 +27,11 @@ class control extends model // 2 step extend model
 					$ans=$res->num_rows;  // row wise check condtion 
 					if($ans==1) // 1 means true
 					{
+						
+						$fetch=$res->fetch_object();
+						
+						//create_session
+						$_SESSION['admin']=$fetch->admin_email;
 						echo "<script>
 							alert('Login Success');
 							window.location='dashboard';
@@ -43,6 +49,15 @@ class control extends model // 2 step extend model
 				}
 				include_once('login.php');
 			break;
+			case '/admin_logout':
+				unset($_SESSION['admin']);
+				echo "<script>
+				alert('Logout Succes');
+				window.location='admin';
+				</script>";
+			break;
+			
+			
 			case '/dashboard':
 				include_once('dashboard.php');
 			break;

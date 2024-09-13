@@ -53,7 +53,7 @@ class model
 		return $run;
 	}
 	
-	// login
+	// login  & fetch data by condition
 	function select_where($tbl,$arr)
 	{
 		$column_arr=array_keys($arr);

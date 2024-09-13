@@ -8,6 +8,7 @@ class control extends model // 2 step extend model
 {
 	function __construct()
 	{
+		session_start();
 		
 		model::__construct(); // 3 call model contruct so database connectivity
 		
@@ -55,21 +56,36 @@ class control extends model // 2 step extend model
 					$user_name=$_REQUEST['user_name'];
 					$pass=md5($_REQUEST['pass']); // pass encrypt
 					
-					$where=array("user_name"=>$user_name,"pass"=>$pass,"status"=>"Unblock");
+					$where=array("user_name"=>$user_name,"pass"=>$pass);
 					
 					$res=$this->select_where('customer',$where);
 					$ans=$res->num_rows;  // row wise check condtion 
 					if($ans==1) // 1 means true
 					{
-						echo "<script>
-							alert('Login Success');
-							window.location='index';
-						</script>";
+						$fetch=$res->fetch_object();
+						
+						//create_session
+						$_SESSION['user']=$fetch->user_name;
+						
+						if($fetch->status=="Unblock")
+						{
+							echo "<script>
+								alert('Login Success');
+								window.location='index';
+							</script>";
+						}
+						else
+						{
+							echo "<script>
+							alert('Login Failed due to Blocked Account');
+							window.location='login';
+							</script>";
+						}
 					}
 					else
 					{
 						echo "<script>
-							alert('Login Failed');
+							alert('Login Failed due to wrong credancial');
 							window.location='login';
 						</script>";
 					}
@@ -78,6 +94,15 @@ class control extends model // 2 step extend model
 				}
 				include_once('login.php');
 			break;
+			
+			case '/userlogout':
+				unset($_SESSION['user']);
+				echo "<script>
+				alert('Logout Succes');
+				window.location='index';
+				</script>";
+			break;
+			
 			case '/signup':
 				
 				if(isset($_REQUEST['signup']))

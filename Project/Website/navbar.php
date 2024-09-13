@@ -23,8 +23,21 @@ function active($currect_page){
 	 </div>
 	 <div class="login_menu">
 		<ul>
-		   <li><a href="login">Login</a></li>
-		   <li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
+		 <?php
+		  if(isset($_SESSION['user']))
+		  {
+		  ?>
+		   <li><a href="userlogout">Logout</a></li>
+		   
+		  <?php
+		  }
+		  else
+		  {  
+		  ?>
+			<li><a href="login">Login</a></li>
+		  <?php
+		  }
+		  ?>
 		</ul>
 	 </div>
   </div>
