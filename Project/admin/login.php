@@ -42,15 +42,15 @@ if(isset($_SESSION['admin']))
                                        <br />
                                      <div class="form-group input-group">
                                             <span class="input-group-addon"><i class="fa fa-tag"  ></i></span>
-                                            <input type="text" name="admin_email" class="form-control" placeholder="Your Username " />
+                                            <input value="<?php if(isset($_COOKIE['admin_email'])) { echo $_COOKIE['admin_email']; }?>" type="text" name="admin_email" class="form-control" placeholder="Your Username " />
                                         </div>
                                                                               <div class="form-group input-group">
                                             <span class="input-group-addon"><i class="fa fa-lock"  ></i></span>
-                                            <input type="password" name="admin_pass" class="form-control"  placeholder="Your Password" />
+                                            <input value="<?php if(isset($_COOKIE['admin_pass'])) { echo $_COOKIE['admin_pass']; }?>" type="password" name="admin_pass" class="form-control"  placeholder="Your Password" />
                                         </div>
                                     <div class="form-group">
                                             <label class="checkbox-inline">
-                                                <input type="checkbox" /> Remember me
+                                                <input name="arem" value="arem" type="checkbox" /> Remember me
                                             </label>
                                             <span class="pull-right">
                                                    <a href="index.html" >Forget password ? </a> 

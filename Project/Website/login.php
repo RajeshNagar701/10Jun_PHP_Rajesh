@@ -61,9 +61,14 @@
                            <h1 class="contact_taital">Login Here</h1>
                            <form action="" method="post">
                               <div class="mail_section_1">
-                                 <input type="email" class="mail_text" placeholder="Email" name="user_name">
-                                 <input type="password" class="mail_text" placeholder="Password" name="pass"> 
-								<br>	
+                                 <input type="email" value="<?php if(isset($_COOKIE['un_cookie'])) { echo $_COOKIE['un_cookie']; }?>" class="mail_text" placeholder="Email" name="user_name">
+                                 <input type="password" value="<?php if(isset($_COOKIE['pass_cookie'])) { echo $_COOKIE['pass_cookie']; }?>" class="mail_text" placeholder="Password" name="pass"> 
+								<br>
+								<div class="form-group">
+									<label class="checkbox-inline">
+										<input name="rem" value="rem" type="checkbox" /> Remember me
+									</label>
+								</div>	
                                  <button class="btn btn-success" type="submit" name="login">Login</button>
 								 <br>
 								 <a href="signup" style="color:white">If you not registered then Signup Here</a>

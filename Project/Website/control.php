@@ -54,6 +54,8 @@ class control extends model // 2 step extend model
 				if(isset($_REQUEST['login']))
 				{
 					$user_name=$_REQUEST['user_name'];
+					$spass=$_REQUEST['pass'];
+					
 					$pass=md5($_REQUEST['pass']); // pass encrypt
 					
 					$where=array("user_name"=>$user_name,"pass"=>$pass);
@@ -63,12 +65,18 @@ class control extends model // 2 step extend model
 					if($ans==1) // 1 means true
 					{
 						$fetch=$res->fetch_object();
-						
-						//create_session
-						$_SESSION['user']=$fetch->user_name;
-						
 						if($fetch->status=="Unblock")
 						{
+							
+							if(isset($_REQUEST['rem']))
+							{
+								setcookie('un_cookie',$user_name,time()+15);
+								setcookie('pass_cookie',$spass,time()+15);
+							}
+							
+							//create_session
+							$_SESSION['user']=$fetch->user_name;
+							
 							echo "<script>
 								alert('Login Success');
 								window.location='index';
