@@ -19,9 +19,9 @@ class model
 		return $arr;
 	}
 	
-	function select_join2($tbl1,$tbl2,$on)
+	function select_join2($tbl1,$tbl2,$col,$on)
 	{
-		$sel="select * from $tbl1 join $tbl2 on $on";  // query
+		$sel="select $tbl1.*,$tbl2.$col from $tbl1 join $tbl2 on $on";  // query
 		$run=$this->conn->query($sel);  // query run on db
 		while($fetch=$run->fetch_object())
 		{
@@ -69,6 +69,9 @@ class model
 		$run=$this->conn->query($sel);  // query run on db
 		return $run;
 	}
+	
+	
+	// delete from customer where id=1 and status="unblock" 
 	
 	function delete_where($tbl,$arr)
 	{

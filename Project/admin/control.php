@@ -109,7 +109,7 @@ class control extends model // 2 step extend model
 			
 			
 			case '/manage_shop':
-				$restaurant_arr=$this->select_join2('restaurant','location','restaurant.loc_id=location.id');
+				$restaurant_arr=$this->select_join2('restaurant','location','loc_name','restaurant.loc_id=location.id');
 				include_once('manage_shop.php');
 			break;
 			case '/add_food':
@@ -118,10 +118,54 @@ class control extends model // 2 step extend model
 			case '/manage_food':
 				include_once('manage_food.php');
 			break;
+			
 			case '/manage_customer':
 				$customer_arr=$this->select('customer');
 				include_once('manage_customer.php');
 			break;
+			
+			case '/delete':
+				
+				if(isset($_REQUEST['del_user']))
+				{
+					$id=$_REQUEST['del_user'];
+					$where=array("id"=>$id);
+					$res=$this->delete_where('customer',$where);
+					if($res)
+					{
+						echo "<script>
+							alert('User Data Delete Success');
+							window.location='manage_customer';
+						</script>";
+					}
+				}
+				
+				if(isset($_REQUEST['del_shop']))
+				{
+					$id=$_REQUEST['del_shop'];
+					$where=array("id"=>$id);
+					
+					// img delete
+					$res_fetch=$this->select_where('restaurant',$where);
+					$fetch=$res_fetch->fetch_object();
+					$img=$fetch->img;
+					
+					
+					$res=$this->delete_where('restaurant',$where);
+					if($res)
+					{
+						unlink('assets/img/restuarant/'.$img); // image delete from folder 
+						echo "<script>
+							alert('Restaurant Data Delete Success');
+							window.location='manage_shop';
+						</script>";
+					}
+				}
+				
+			break;
+			
+			
+			
 			case '/manage_cart':
 				include_once('manage_cart.php');
 			break;
