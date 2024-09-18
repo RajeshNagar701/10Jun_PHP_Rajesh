@@ -39,6 +39,7 @@ class control extends model // 2 step extend model
 						
 						//create_session
 						$_SESSION['admin']=$fetch->admin_email;
+						$_SESSION['admin_id']=$fetch->id;
 						echo "<script>
 							alert('Login Success');
 							window.location='dashboard';
@@ -58,6 +59,7 @@ class control extends model // 2 step extend model
 			break;
 			case '/admin_logout':
 				unset($_SESSION['admin']);
+				unset($_SESSION['admin_id']);
 				echo "<script>
 				alert('Logout Succes');
 				window.location='admin';
@@ -96,6 +98,16 @@ class control extends model // 2 step extend model
 				}
 				include_once('add_shop.php');
 			break;
+			
+			case '/admin_profile':
+				$where=array("id"=>$_SESSION['admin_id']);
+				$res=$this->select_where('admins',$where);
+				$fetch=$res->fetch_object();
+				include_once('admin_profile.php');
+			break;
+			
+			
+			
 			case '/manage_shop':
 				$restaurant_arr=$this->select_join2('restaurant','location','restaurant.loc_id=location.id');
 				include_once('manage_shop.php');

@@ -75,6 +75,7 @@ class control extends model // 2 step extend model
 							}
 							
 							//create_session
+							$_SESSION['user_id']=$fetch->id;
 							$_SESSION['user']=$fetch->user_name;
 							
 							echo "<script>
@@ -104,12 +105,22 @@ class control extends model // 2 step extend model
 			break;
 			
 			case '/userlogout':
+				unset($_SESSION['user_id']);
 				unset($_SESSION['user']);
 				echo "<script>
 				alert('Logout Succes');
 				window.location='index';
 				</script>";
 			break;
+			
+			case '/user_profile':
+				$where=array("id"=>$_SESSION['user_id']);
+				$res=$this->select_where('customer',$where);
+				$fetch=$res->fetch_object();
+				include_once('user_profile.php');
+			break;
+			
+			
 			
 			case '/signup':
 				

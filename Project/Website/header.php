@@ -16,7 +16,7 @@
 			  <a class="logo" href="/"><img src="images/logo.png"></a></a>
 			  <span class="toggle" onclick="openNav()"><i class="fa fa-bars"></i></span>
 			  <?php
-			  if(isset($_SESSION['user']))
+			  if(isset($_SESSION['user_id']))
 			  {
 			  ?>
 			  <div class="login_text"><a href="#"><i class="fa fa-user" aria-hidden="true"></i><span class="padding_left10">Hi .. <?php echo $_SESSION['user']?></span></a></div>

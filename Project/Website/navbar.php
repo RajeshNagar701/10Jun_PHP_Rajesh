@@ -19,16 +19,23 @@ function active($currect_page){
 		   <li class="<?php active("about")?>"><a href="about">About</a></li>
 		   <li class="<?php active("shop")?>"><a href="shop">Shop</a></li>
 		   <li class="<?php active("contact")?>"><a href="contact">Contacts</a></li>
+		    <?php
+			  if(isset($_SESSION['user_id']))
+			  {
+			  ?>
+			    <li class="<?php active("user_profile")?>"><a href="user_profile">Account</a></li>
+			  <?php
+			  }
+			  ?>
 		</ul>
 	 </div>
 	 <div class="login_menu">
 		<ul>
 		 <?php
-		  if(isset($_SESSION['user']))
+		  if(isset($_SESSION['user_id']))
 		  {
 		  ?>
-		   <li><a href="userlogout">Logout</a></li>
-		   
+		   <li><a href="userlogout">Logout </a></li> 
 		  <?php
 		  }
 		  else
