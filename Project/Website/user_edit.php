@@ -9,7 +9,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
       <!-- site metas -->
-      <title>Profile Page</title>
+      <title>Contact</title>
       <meta name="keywords" content="">
       <meta name="description" content="">
       <meta name="author" content="">
@@ -42,6 +42,9 @@
       <!-- layout main section start -->
       <div class="container-fluid">
          <div class="layout_main">
+      <!-- layout main section start -->
+      <div class="container-fluid">
+         <div class="layout_main">
             <!-- banner section start -->
             <div class="banner_section">
                <?php
@@ -49,39 +52,44 @@
 			    ?>
             </div>
             <!-- banner section end -->
-            <!-- blog section start -->
-            <div class="blog_section">
+            <!-- contact section start -->
+            <div class="contact_section">
                <div class="container">
-                  <div class="row">
-                     <div class="col-sm-12">
-                        <h1 class="blog_taital"><?php echo $_SESSION['user']?> Profile</h1>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <div class="blog_section_2 layout_padding">
-               <div class="container">
-                  <div class="row">
-                    
-					<div class="col-md-6">
-                        <div class="blog_img"><img src="images/customer/<?php echo $fetch->img?>" height="300px" width="100%"></div>
-                     </div>
-                    
-					<div class="col-md-6">
-                        <div class="blog_taital_main">
-						   <h1 class="blog_text">User ID :<?php echo $fetch->id?></h1>
-                           <h1 class="blog_text">User Name :<?php echo $fetch->user_name?></h1>
-                           <p class="lorem_text">Gender : <?php echo $fetch->gender?></p>
-						   <p class="lorem_text">Launguges : <?php echo $fetch->lag?></p>
-						   <p class="lorem_text">Status : <?php echo $fetch->status?></p>
-                           <div class="readmore_btn"><a href="user_edit?user_id=<?php echo $fetch->id?>">Edit Profile</a></div>
+                  <div class="contact_section_2">
+                     <div class="row">
+                        <div class="col-md-12">
+                           <h1 class="contact_taital">Edit Here</h1>
+                           <form action="" method="post" enctype="multipart/form-data">
+                              <div class="mail_section_1">
+                                 <input type="email" value="<?php echo $fetch->user_name;?>" name="user_name" class="mail_text" placeholder="Email" />
+								 <div class="text-white">
+								 Gender :
+								 Male :<input type="radio" name="gender" value="Male" <?php if($fetch->gender=="Male"){ echo "checked";} ?> /> 
+								 Female :<input type="radio" name="gender" value="Female" <?php if($fetch->gender=="Female"){ echo "checked";} ?> /> 
+								 </div>	
+								 <div class="text-white">
+								 <?php
+								 $lag=$fetch->lag;
+								 $lag_arr=explode(",",$lag);
+								 ?>
+								 
+								 Lag :
+								 Hindi :<input type="checkbox" name="lag[]" value="Hindi" <?php if(in_array("Hindi",$lag_arr)) {echo "checked";}?>/> 
+								 Gujarati :<input type="checkbox" name="lag[]" value="Gujarati" <?php if(in_array("Gujarati",$lag_arr)) {echo "checked";}?> /> 
+								 English :<input type="checkbox" name="lag[]" value="English" <?php if(in_array("English",$lag_arr)) {echo "checked";}?> /> 
+								 </div>	
+								 <input type="file" name="img" class="mail_text"/> 
+								 <img src="images/customer/<?php echo $fetch->img?>" width="50px">
+                                 <input class="btn btn-success mt-5" type="submit" name="save" value="Save">
+                              </div>
+                           </form>
                         </div>
-                    </div>
-					
+                     </div>
+                    
                   </div>
                </div>
             </div>
-            <!-- blog section end -->
+            <!-- contact section end -->
             <!-- footer section start -->
             <?php
 			include_once('footer.php');

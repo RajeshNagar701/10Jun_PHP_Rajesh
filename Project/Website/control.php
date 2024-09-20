@@ -120,6 +120,16 @@ class control extends model // 2 step extend model
 				include_once('user_profile.php');
 			break;
 			
+			case '/user_edit':
+				if(isset($_REQUEST['user_id']))
+				{
+					$id=$_REQUEST['user_id'];
+					$where=array("id"=>$id);
+					$res=$this->select_where('customer',$where);
+					$fetch=$res->fetch_object();
+				}
+				include_once('user_edit.php');
+			break;
 			
 			
 			case '/signup':

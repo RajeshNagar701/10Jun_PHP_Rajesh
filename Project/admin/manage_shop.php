@@ -45,7 +45,7 @@
                                             <td><?php echo $data->address; ?></td>
                                             <td><?php echo $data->loc_name; ?></td>
 											<td>
-												<a href="#" class="btn btn-primary">Edit</a>
+												<a href="shop_edit?shop_id=<?php echo $data->id; ?>" class="btn btn-primary">Edit</a>
 												<a href="delete?del_shop=<?php echo $data->id; ?>" class="btn btn-danger" > Delete</a>
 												<a href="#" class="btn btn-info">Status</a>
 											</td>

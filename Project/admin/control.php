@@ -99,6 +99,20 @@ class control extends model // 2 step extend model
 				include_once('add_shop.php');
 			break;
 			
+			
+			
+				case '/shop_edit':
+				$loca_arr=$this->select("location");
+				if(isset($_REQUEST['shop_id']))
+				{
+					$id=$_REQUEST['shop_id'];
+					$where=array("id"=>$id);
+					$res=$this->select_where('restaurant',$where);
+					$fetch=$res->fetch_object();
+				}
+				include_once('shop_edit.php');
+			break;
+			
 			case '/admin_profile':
 				$where=array("id"=>$_SESSION['admin_id']);
 				$res=$this->select_where('admins',$where);
