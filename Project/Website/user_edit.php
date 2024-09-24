@@ -80,7 +80,7 @@
 								 </div>	
 								 <input type="file" name="img" class="mail_text"/> 
 								 <img src="images/customer/<?php echo $fetch->img?>" width="50px">
-                                 <input class="btn btn-success mt-5" type="submit" name="save" value="Save">
+                                 <input class="btn btn-success mt-5" type="submit" name="update" value="Save">
                               </div>
                            </form>
                         </div>

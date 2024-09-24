@@ -28,6 +28,7 @@
 										<div class="form-group">
                                             <label>Upload Image</label>
                                             <input name="img" class="form-control" type="file">
+											<img src="assets/img/restuarant/<?php echo $fetch->img;?>" width="50px">
                                         </div>
 										<div class="form-group">
                                             <label>Select Example</label>
@@ -36,22 +37,36 @@
 											<?php
 											foreach($loca_arr as $w)
 											{
+												if($w->id==$fetch->loc_id)
+												{
 											?>
-                                                <option value="<?php echo $w->id?>"><?php echo $w->loc_name?></option>
+													<option value="<?php echo $w->id?>" selected>
+													<?php echo $w->loc_name?>
+													</option>
 											<?php
+												}
+												else
+												{
+													?>
+													<option value="<?php echo $w->id?>">
+													<?php echo $w->loc_name?>
+													</option>
+												<?php	
+												}	
+												
 											}
 											?>	
                                             </select>
                                         </div>
 										<div class="form-group">
                                             <label>Address</label>
-                                            <textarea name="address" class="form-control"></textarea>
+                                            <textarea name="address" class="form-control"><?php echo $fetch->address;?></textarea>
                                         </div>
 										<div class="form-group">
                                             <label>Google url</label>
-                                            <input name="google" class="form-control" type="url"/ ></input>
+                                            <input name="google" value="<?php echo $fetch->google;?>" class="form-control" type="url"/ ></input>
                                         </div>
-                                        <button type="submit"  name="submit" class="btn btn-info">Submit</button>
+                                        <button type="submit"  name="update" class="btn btn-info">Submit</button>
 
                                     </form>
                             </div>

@@ -127,6 +127,51 @@ class control extends model // 2 step extend model
 					$where=array("id"=>$id);
 					$res=$this->select_where('customer',$where);
 					$fetch=$res->fetch_object();
+					
+					$old_img=$fetch->img;
+					
+					if(isset($_REQUEST['update']))
+					{
+						$user_name=$_REQUEST['user_name'];
+						$gender=$_REQUEST['gender'];
+						$lag_arr=$_REQUEST['lag']; 
+						$lag=implode(",",$lag_arr); // convert arr to string
+						
+						
+						
+						if($_FILES['img']['size']>0)
+						{
+							
+							$img=$_FILES['img']['name'];
+							$path="images/customer/".$img;
+							$tmp_img=$_FILES['img']['tmp_name'];
+							move_uploaded_file($tmp_img,$path);
+							
+							$data=array("user_name"=>$user_name,"gender"=>$gender,"lag"=>$lag,"img"=>$img);
+							$res=$this->update('customer',$data,$where);
+							if($res)
+							{					
+								unlink('images/customer/'.$old_img);
+								echo "<script>
+									alert('Update Success');
+									window.location='user_profile';
+								</script>";
+							}
+						}
+						else
+						{
+							$data=array("user_name"=>$user_name,"gender"=>$gender,"lag"=>$lag);
+							$res=$this->update('customer',$data,$where);
+							if($res)
+							{					
+								echo "<script>
+									alert('Update Success');
+									window.location='user_profile';
+								</script>";
+							}
+						}
+					}
+					
 				}
 				include_once('user_edit.php');
 			break;

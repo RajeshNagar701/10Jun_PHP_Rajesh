@@ -109,6 +109,48 @@ class control extends model // 2 step extend model
 					$where=array("id"=>$id);
 					$res=$this->select_where('restaurant',$where);
 					$fetch=$res->fetch_object();
+					
+					$old_img=$fetch->img;
+					
+					if(isset($_REQUEST['update']))
+					{
+							$name=$_REQUEST['name'];
+							$loc_id=$_REQUEST['loc_id'];
+							$address=$_REQUEST['address']; 
+							$google=$_REQUEST['google'];
+							
+							if($_FILES['img']['name']>0)
+							{
+								$img=$_FILES['img']['name'];
+								$path="assets/img/restuarant/".$img;
+								$tmp_img=$_FILES['img']['tmp_name'];
+								move_uploaded_file($tmp_img,$path);
+							
+								$data=array("name"=>$name,"loc_id"=>$loc_id,"address"=>$address,"google"=>$google,"img"=>$img);
+								$res=$this->update('restaurant',$data,$where);
+								if($res)
+								{					
+									unlink('assets/img/restuarant/'.$old_img);
+									echo "<script>
+										alert('Data Update Success');
+										window.location='manage_shop';
+									</script>";
+								}
+							}
+							else
+							{
+								$data=array("name"=>$name,"loc_id"=>$loc_id,"address"=>$address,"google"=>$google);
+								$res=$this->update('restaurant',$data,$where);
+								if($res)
+								{					
+									echo "<script>
+										alert('Data Update Success');
+										window.location='manage_shop';
+									</script>";
+								}
+							}
+					}
+					
 				}
 				include_once('shop_edit.php');
 			break;
