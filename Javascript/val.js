@@ -178,13 +178,12 @@ function reg_form(str)
 	} 
 	
 	
-	
 	function check1(file)
 	{
 	
 	var filename=file.value;
 	var ext=filename.substring(filename.lastIndexOf('.')+1);
-		if(ext=="pdf" || ext=="PDF")
+		if(ext=="PDF" || ext=="pdf")
 		{
 		document.getElementById("msg1").innerHTML="";
 		document.getElementById("submit").disabled=false;
