@@ -53,7 +53,7 @@ class model
 		$value_arr=array_values($arr);
 		$value=implode("','",$value_arr); // 'name','email',comment','created_at','udated_at'
 
-		echo $ins="insert into $tbl ($column) value ('$value')";  // query
+		$ins="insert into $tbl ($column) value ('$value')";  // query
 		$run=$this->conn->query($ins);  // run on db
 		return $run;
 	}
@@ -66,7 +66,7 @@ class model
 		$i=0;
 		foreach($where as $w)
 		{
-			echo $del.=" and $col_arr[$i]='$value_arr[$i]'";
+			$del.=" and $col_arr[$i]='$value_arr[$i]'";
 			$i++;
 		}
 		$run=$this->conn->query($del);  // run on db
@@ -82,7 +82,7 @@ class model
 		$i=0;
 		foreach($where as $w)
 		{
-			echo $sel.=" and $col_arr[$i]='$value_arr[$i]'";
+			$sel.=" and $col_arr[$i]='$value_arr[$i]'";
 			$i++;
 		}
 		$run=$this->conn->query($sel);  // run on db
@@ -98,7 +98,7 @@ class model
 		$i=0;
 		foreach($where as $w)
 		{
-			echo $sel.=" and $col_arr[$i]='$value_arr[$i]'";
+			$sel.=" and $col_arr[$i]='$value_arr[$i]'";
 			$i++;
 		}
 		$run=$this->conn->query($sel);  // run on db
@@ -131,7 +131,7 @@ class model
 		$i=0;
 		foreach($where as $w)
 		{
-			echo $upd.=" and $col_where[$i]='$value_where[$i]'";
+			$upd.=" and $col_where[$i]='$value_where[$i]'";
 			$i++;
 		}
 		$run=$this->conn->query($upd);  // run on db
