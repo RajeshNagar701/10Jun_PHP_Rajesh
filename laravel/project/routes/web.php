@@ -50,3 +50,36 @@ Route::get('/testimonial', function () {
 
 
 // Admin =============================================================
+
+Route::get('/admin-login', function () {
+    return view('admin.login');
+});
+
+Route::get('/dashboard', function () {
+    return view('admin.index');
+});
+
+Route::get('/add_categories', function () {
+    return view('admin.add_categories');
+});
+
+Route::get('/manage_categories', function () {
+    return view('admin.manage_categories');
+});
+
+
+Route::get('/add_services', function () {
+    return view('admin.add_services');
+});
+
+Route::get('/manage_services', function () {
+    return view('admin.manage_services');
+});
+
+Route::get('/manage_user', function () {
+    return view('admin.manage_user');
+});
+
+Route::get('/manage_contact', function () {
+    return view('admin.manage_contact');
+});
