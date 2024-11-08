@@ -42,7 +42,6 @@ function active($currect_page){
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="dashboard">
-
                     <img src="{{url('admin/assets/img/logo.png')}}" />
                 </a>
 

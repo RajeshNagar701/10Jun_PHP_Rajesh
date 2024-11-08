@@ -2,6 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\userController;
+use App\Http\Controllers\contactController;
+use App\Http\Controllers\categoryController;
+use App\Http\Controllers\serviceController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -63,23 +68,12 @@ Route::get('/add_categories', function () {
     return view('admin.add_categories');
 });
 
-Route::get('/manage_categories', function () {
-    return view('admin.manage_categories');
-});
+Route::get('/manage_categories',[categoryController::class,'show']);
 
 
-Route::get('/add_services', function () {
-    return view('admin.add_services');
-});
+Route::get('/add_services',[serviceController::class,'create']);
+Route::get('/manage_services',[serviceController::class,'show']);
 
-Route::get('/manage_services', function () {
-    return view('admin.manage_services');
-});
+Route::get('/manage_user',[userController::class,'show']);
 
-Route::get('/manage_user', function () {
-    return view('admin.manage_user');
-});
-
-Route::get('/manage_contact', function () {
-    return view('admin.manage_contact');
-});
+Route::get('/manage_contact',[contactController::class,'show']);

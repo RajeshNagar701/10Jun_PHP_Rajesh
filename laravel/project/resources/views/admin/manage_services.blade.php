@@ -23,64 +23,33 @@
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered table-hover">
                                 <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Username</th>
-                                        <th>User No.</th>
+                                <tr>
+                                        <th>#ID</th>
+                                        <th>Cate Id</th>
+                                        <th>Service Name</th>
+                                        <th>Price</th>
+                                        <th>Image</th>
+                                        <th>Description</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                 @if(!empty($service))   
+                                    @foreach($service as $d)
                                     <tr>
-                                        <td>1</td>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                        <td>100090</td>
+                                        <td>{{$d->id}}</td>
+                                        <td>{{$d->cate_id}}</td>
+                                        <td>{{$d->ser_name}}</td>
+                                        <td>{{$d->price}}</td>
+                                        <td>{{$d->ser_img}}</td>
+                                        <td>{{$d->description}}</td>
+                                        <td>
+                                            <a href="" class="btn btn-danger">Delete</a>
+                                            <a href="" class="btn btn-primary">Edit</a>
+                                        </td>
                                     </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                        <td>100090</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                        <td>100090</td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                        <td>100090</td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                        <td>100090</td>
-                                    </tr>
-                                    <tr>
-                                        <td>6</td>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                        <td>100090</td>
-                                    </tr>
-                                    <tr>
-                                        <td>7</td>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                        <td>100090</td>
-                                    </tr>
+                                    @endforeach
+                                 @endif 
                                 </tbody>
                             </table>
                         </div>
