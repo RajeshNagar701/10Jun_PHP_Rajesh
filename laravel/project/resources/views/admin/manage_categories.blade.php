@@ -38,7 +38,7 @@
                                         <td>{{$d->cate_name}}</td>
                                         <td>{{$d->cate_img}}</td>
                                         <td>
-                                            <a href="" class="btn btn-danger">Delete</a>
+                                            <a href="deletecategories/<?php echo $d->id?>" class="btn btn-danger">Delete</a>
                                             <a href="" class="btn btn-primary">Edit</a>
                                         </td>
                                     </tr>

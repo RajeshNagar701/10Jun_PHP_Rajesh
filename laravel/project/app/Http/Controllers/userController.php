@@ -12,6 +12,13 @@ class userController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+    public function login()
+    {
+        return view('website.login');
+    }
+
     public function index()
     {
         //
@@ -24,7 +31,7 @@ class userController extends Controller
      */
     public function create()
     {
-        //
+        return view('website.signup');
     }
 
     /**
@@ -79,8 +86,10 @@ class userController extends Controller
      * @param  \App\Models\user  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(user $user)
+    public function destroy(user $user,$id)
     {
-        //
+        $data=user::find($id);  // find data from table as per id
+        $data->delete();    // then delete data
+        return redirect('/manage_user'); // redirect after delete
     }
 }

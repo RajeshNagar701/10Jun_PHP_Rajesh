@@ -79,8 +79,10 @@ class serviceController extends Controller
      * @param  \App\Models\service  $service
      * @return \Illuminate\Http\Response
      */
-    public function destroy(service $service)
+    public function destroy(service $service,$id)
     {
-        //
+        $data=service::find($id);
+        $data->delete();
+        return redirect('/manage_services');
     }
 }

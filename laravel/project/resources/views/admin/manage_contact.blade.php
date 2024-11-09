@@ -41,7 +41,7 @@
                                         <td>{{$d->comment}}</td>
                                         <td>{{$d->cid}}</td>
                                         <td>
-                                            <a href="" class="btn btn-danger">Delete</a>
+                                            <a href="deletecontact/<?php echo $d->id?>" class="btn btn-danger">Delete</a>
                                             <a href="" class="btn btn-primary">Edit</a>
                                         </td>
                                     </tr>

@@ -26,6 +26,12 @@ Route::get('/index', function () {
     return view('website.index');
 });
 
+Route::get('/signup',[userController::class,'create']);
+
+
+Route::get('/login',[userController::class,'login']);
+
+
 Route::get('/about', function () {
     return view('website.about');
 });
@@ -69,11 +75,14 @@ Route::get('/add_categories', function () {
 });
 
 Route::get('/manage_categories',[categoryController::class,'show']);
-
+Route::get('/deletecategories/{id}',[categoryController::class,'destroy']);
 
 Route::get('/add_services',[serviceController::class,'create']);
 Route::get('/manage_services',[serviceController::class,'show']);
+Route::get('/deleteservices/{id}',[serviceController::class,'destroy']);
 
 Route::get('/manage_user',[userController::class,'show']);
+Route::get('/deleteuser/{id}',[userController::class,'destroy']);
 
 Route::get('/manage_contact',[contactController::class,'show']);
+Route::get('/deletecontact/{id}',[contactController::class,'destroy']);
