@@ -45,7 +45,7 @@
                                         <td>{{$d->gender}}</td>
                                         <td>{{$d->lag}}</td>
                                         <td>{{$d->mobile}}</td>
-                                        <td>{{$d->img}}</td>
+                                        <td><img src="website/upload/user/{{$d->img}}" width="50px" alt=""></td>
                                         <td>{{$d->cid}}</td>
                                         <td>
                                             <a href="deleteuser/<?php echo $d->id?>" class="btn btn-danger">Delete</a>

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\user;
+use App\Models\contry;
 use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\Hash;
 
 class userController extends Controller
 {
@@ -31,7 +34,8 @@ class userController extends Controller
      */
     public function create()
     {
-        return view('website.signup');
+        $data=contry::all();
+        return view('website.signup',['data'=>$data]);
     }
 
     /**
@@ -42,7 +46,25 @@ class userController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data=new user;
+
+        $data->name=$request->name;
+        $data->mobile=$request->mobile;
+        $data->email=$request->email;
+        $data->password=Hash::make($request->password);
+        $data->gender=$request->gender;
+        $data->lag=implode(",",$request->lag);
+        $data->cid=$request->cid;
+
+        // image upload
+        $file=$request->file('img');
+        $filename=time()."_img.".$request->file('img')->getClientOriginalExtension(); // get file ext
+        $file->move('website/upload/user/',$filename); // move file in public path
+        $data->img=$filename;
+
+        $data->save();
+        return redirect('/signup');
+
     }
 
     /**
@@ -89,7 +111,10 @@ class userController extends Controller
     public function destroy(user $user,$id)
     {
         $data=user::find($id);  // find data from table as per id
+        $del_img=$data->img;
         $data->delete();    // then delete data
+        unlink('website/upload/user/'.$del_img);
+
         return redirect('/manage_user'); // redirect after delete
     }
 }

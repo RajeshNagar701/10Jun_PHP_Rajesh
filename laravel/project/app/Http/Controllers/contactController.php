@@ -24,7 +24,7 @@ class contactController extends Controller
      */
     public function create()
     {
-        //
+        return view('website.contact');
     }
 
     /**
@@ -35,7 +35,12 @@ class contactController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data= new contact;
+        $data->name=$request->name;
+        $data->email=$request->email;
+        $data->comment=$request->comment;
+        $data->save();
+        return redirect('/contact');
     }
 
     /**

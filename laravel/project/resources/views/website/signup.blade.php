@@ -26,24 +26,31 @@
                     <p class="d-inline-block border rounded-pill py-1 px-4">Signup Us</p>
                     <h1 class="mb-4">Signup Here</h1>
 
-                    <form method="post" action="">
+                    <form method="post" enctype="multipart/form-data" action="{{url('/insertsignup')}}">
+                        @csrf
                         <div class="row g-3">
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="name" placeholder="Your Name">
+                                    <input type="text" name="name" class="form-control" id="name" placeholder="Your Name">
                                     <label for="name">Your Name</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="number" name="mobile" class="form-control" id="mobile" placeholder="Your Mobile">
+                                    <label for="name">Your Mobile</label>
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="email" class="form-control" id="email" placeholder="Your Email">
+                                    <input type="email" name="email" class="form-control" id="email" placeholder="Your Email">
                                     <label for="email">Your Email</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="password" class="form-control" id="password" placeholder="Your Password">
+                                    <input type="password" name="password" class="form-control" id="password" placeholder="Your Password">
                                     <label for="name">Your Password</label>
                                 </div>
                             </div>
@@ -51,14 +58,19 @@
                                 <div class="form-floating">
                                     <select name="cid" class="form-control">
                                         <option>Select Country</option>
+                                        @if(!empty($data))
+                                            @foreach($data as $d)
+                                            <option value="{{$d->id}}">{{$d->cnm}}</option>
+                                            @endforeach
+                                        @endif
                                     </select>
                                     <label for="subject">Country</label>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <label for="message">Gender : </label>
-                                Male :<input type="radio" name="gen" value="Male">
-                                Female :<input type="radio" name="gen" value="Female">
+                                Male :<input type="radio" name="gender" value="Male">
+                                Female :<input type="radio" name="gender" value="Female">
                             </div>
                             <div class="col-12">
                                 <label for="message">Launguages : </label>
@@ -66,8 +78,16 @@
                                 English :<input type="checkbox" name="lag[]" value="English">
                                 Gujarati :<input type="checkbox" name="lag[]" value="Gujarati">
                             </div>
+
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <input type="file" name="img" class="form-control" id="img" placeholder="Your Image">
+                                    <label for="name">Upload Profile Image</label>
+                                </div>
+                            </div>
+
                             <div class="col-12">
-                                <button class="btn btn-primary w-100 py-3" type="submit">Signup</button>
+                                <button class="btn btn-primary w-100 py-3" name="submit" type="submit">Signup</button>
                             </div>
                             <div class="col-12 col-sm-12">
                                 <a href="login">If already regisrtered then Login Here</a>

@@ -27,7 +27,7 @@ Route::get('/index', function () {
 });
 
 Route::get('/signup',[userController::class,'create']);
-
+Route::post('/insertsignup',[userController::class,'store']);
 
 Route::get('/login',[userController::class,'login']);
 
@@ -39,9 +39,10 @@ Route::get('/appointment', function () {
     return view('website.appointment');
 });
 
-Route::get('/contact', function () {
-    return view('website.contact');
-});
+
+Route::get('/contact',[contactController::class,'create']);
+Route::post('/contact',[contactController::class,'store']);
+
 
 Route::get('/feature', function () {
     return view('website.feature');
