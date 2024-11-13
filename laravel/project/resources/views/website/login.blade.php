@@ -25,14 +25,15 @@
                 <div class="bg-light rounded p-5">
                     <p class="d-inline-block border rounded-pill py-1 px-4">Login Us</p>
                     <h1 class="mb-4">Login Here</h1>
-                    <form action="" method="">
+                    <form action="{{url('/auth_login')}}" method="post">
+                        @csrf
                         <div class="row g-3">
 
                             <div class="col-12 col-sm-12">
-                                <input type="email" class="form-control border-0" placeholder="Your Email" style="height: 55px;">
+                                <input type="email" name="email" class="form-control border-0" placeholder="Your Email" style="height: 55px;">
                             </div>
                             <div class="col-12 col-sm-12">
-                                <input type="password" class="form-control border-0" placeholder="Your Password" style="height: 55px;">
+                                <input type="password" name="password" class="form-control border-0" placeholder="Your Password" style="height: 55px;">
                             </div>
                             <div class="col-12 col-sm-12">
                                 <button class="btn btn-primary w-100 py-3" type="submit">Login</button>

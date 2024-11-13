@@ -68,7 +68,13 @@ function active($currect_page){
             </div>
             <div class="col-lg-5 px-5 text-end">
                 <div class="h-100 d-inline-flex align-items-center py-3 me-4">
-                <a href="login" class="me-2"><i class="fa fa-user ms-3 me-2"></i> Login</a>
+                    @if(session()->get('userid'))
+                    <a href="profile" class="me-2"><i class="fa fa-user ms-3 me-2"></i> Hi .. {{session()->get('name')}}</a>
+                    @else
+                    <a href="login" class="me-2"><i class="fa fa-user ms-3 me-2"></i> Login</a>
+                    @endif
+
+                    
                     <small class="fa fa-phone-alt text-primary me-2"></small>
                     <small>+012 345 6789</small>
                 </div>

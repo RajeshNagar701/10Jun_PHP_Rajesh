@@ -6,6 +6,7 @@ use App\Http\Controllers\userController;
 use App\Http\Controllers\contactController;
 use App\Http\Controllers\categoryController;
 use App\Http\Controllers\serviceController;
+use App\Http\Controllers\adminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +31,7 @@ Route::get('/signup',[userController::class,'create']);
 Route::post('/insertsignup',[userController::class,'store']);
 
 Route::get('/login',[userController::class,'login']);
-
+Route::post('/auth_login',[userController::class,'auth_login']);
 
 Route::get('/about', function () {
     return view('website.about');
@@ -64,8 +65,11 @@ Route::get('/testimonial', function () {
 // Admin =============================================================
 
 Route::get('/admin-login', function () {
-    return view('admin.login');
+    
 });
+
+Route::get('/admin-login',[adminController::class,'login']);
+Route::post('/auth_admin',[adminController::class,'auth_admin']);
 
 Route::get('/dashboard', function () {
     return view('admin.index');

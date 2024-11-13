@@ -22,6 +22,62 @@ class userController extends Controller
         return view('website.login');
     }
 
+    public function auth_login(Request $request)
+    {
+    
+        $email=$request->email;
+        $password=$request->password;
+        
+        $data=user::where('email',$email)->first();  // get() array / first() single data 
+        if($data)
+        {
+            if(Hash::check($password,$data->password))
+            {
+                if($data->status=="Unblock")
+                {
+                    // create
+                    session()->put('userid',$data->id);
+					session()->put('email',$data->email);
+					session()->put('name',$data->name);
+
+                    //session()->get('name') // name session print
+                    //session()->pull('name') // session delete
+
+                    echo "<script> 
+                    alert('Login Suuceess !');
+                    window.location='/';
+                    </script>";
+                }
+                else
+                {
+                    echo "<script> 
+                        alert('Blocked !'); 
+                        window.location='/login';
+                    </script>";
+                   
+                }
+            }
+            else
+            {
+                echo "<script> 
+                        alert('Password not match !'); 
+                        window.location='/login';
+                    </script>";
+                   
+               
+            }
+        }
+        else
+        {
+            echo "<script>
+                alert('Username does not exits !');
+                window.location='/login';
+             </script>";
+            
+        }
+
+    }
+    
     public function index()
     {
         //
