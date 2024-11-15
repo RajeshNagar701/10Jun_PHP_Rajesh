@@ -33,6 +33,9 @@ Route::post('/insertsignup',[userController::class,'store']);
 Route::get('/login',[userController::class,'login']);
 Route::post('/auth_login',[userController::class,'auth_login']);
 
+Route::get('/userlogout',[userController::class,'userlogout']);
+
+
 Route::get('/about', function () {
     return view('website.about');
 });
@@ -70,6 +73,9 @@ Route::get('/admin-login', function () {
 
 Route::get('/admin-login',[adminController::class,'login']);
 Route::post('/auth_admin',[adminController::class,'auth_admin']);
+
+Route::get('/adminlogout',[adminController::class,'adminlogout']);
+
 
 Route::get('/dashboard', function () {
     return view('admin.index');

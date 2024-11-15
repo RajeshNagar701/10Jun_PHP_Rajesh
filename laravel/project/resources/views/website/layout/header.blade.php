@@ -113,6 +113,17 @@ function active($currect_page){
                         <a href="404" class="dropdown-item ">404 Page</a>
                     </div>
                 </div>
+
+                @if(session()->get('userid'))
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">My Account</a>
+                    <div class="dropdown-menu rounded-0 rounded-bottom m-0">
+                        <a href="feature" class="dropdown-item <?php active("Profile")?>">Profile</a>
+                        <a href="userlogout" class="dropdown-item <?php active("logout")?>">Logout</a>
+                    </div>
+                </div>
+                @endif
+                
                 <a href="contact" class="nav-item nav-link <?php active("contact")?>">Contact</a>
             </div>
             <a href="" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Appointment<i class="fa fa-arrow-right ms-3"></i></a>

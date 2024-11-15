@@ -62,6 +62,20 @@ class adminController extends Controller
  
      }
 
+     function adminlogout(){
+
+        session()->pull('adminid');
+		session()->pull('adminemail');
+		session()->pull('adminname');
+
+        echo "<script>
+            alert('Admin Logout Success !');
+            window.location='/admin-login';
+        </script>";
+
+    }
+
+
 
     public function index()
     {

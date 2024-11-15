@@ -15,8 +15,6 @@ class userController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-
     public function login()
     {
         return view('website.login');
@@ -78,6 +76,19 @@ class userController extends Controller
 
     }
     
+    function userlogout(){
+
+        session()->pull('userid');
+		session()->pull('email');
+		session()->pull('name');
+        echo "<script>
+            alert('User Logout Success !');
+            window.location='/index';
+        </script>";
+
+    }
+
+
     public function index()
     {
         //

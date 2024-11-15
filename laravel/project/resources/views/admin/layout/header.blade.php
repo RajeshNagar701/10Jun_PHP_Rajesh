@@ -1,4 +1,19 @@
 <?php
+if(session()->get('adminid'))
+{
+
+}
+else
+{
+    echo "<script>
+            alert('Login First !');
+            window.location='/admin-login';
+        </script>";
+}
+
+
+
+
 
 function active($currect_page){
 	  $url_array =  explode('/', $_SERVER['REQUEST_URI']) ;
@@ -48,7 +63,7 @@ function active($currect_page){
             </div>
 
             <div class="right-div">
-                <a href="#" class="btn btn-danger pull-right">LOG ME OUT</a>
+                <a href="adminlogout" class="btn btn-danger pull-right">LOG ME OUT</a>
             </div>
         </div>
     </div>
