@@ -23,6 +23,11 @@ class userController extends Controller
     public function auth_login(Request $request)
     {
     
+        $validated = $request->validate([
+            'email'=> 'required|email',
+            'password'=> 'required|min:3|max:12'
+        ]);
+
         $email=$request->email;
         $password=$request->password;
         
@@ -113,6 +118,18 @@ class userController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'name'=>'required|alpha:ascii',
+            'email'=> 'required|email',
+            'mobile'=> 'required|digits:10',
+            'password'=> 'required|min:3|max:12',
+            'gender' => ['required', 'in:Male,Female'],
+            'lag' => 'required',
+            'cid' => 'required',
+            'img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        ]);
+
+
         $data=new user;
 
         $data->name=$request->name;

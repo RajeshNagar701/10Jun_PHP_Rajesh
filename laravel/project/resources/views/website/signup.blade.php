@@ -31,58 +31,82 @@
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="text" name="name" class="form-control" id="name" placeholder="Your Name">
+                                    <input type="text" value="{{old('name')}}" name="name" class="form-control" id="name" placeholder="Your Name">
                                     <label for="name">Your Name</label>
+                                    @error('name')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="number" name="mobile" class="form-control" id="mobile" placeholder="Your Mobile">
+                                    <input type="number" value="{{old('mobile')}}" name="mobile" class="form-control" id="mobile" placeholder="Your Mobile">
                                     <label for="name">Your Mobile</label>
+                                    @error('name')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="email" name="email" class="form-control" id="email" placeholder="Your Email">
+                                    <input type="text" value="{{old('email')}}" name="email" class="form-control" id="email" placeholder="Your Email">
                                     <label for="email">Your Email</label>
+                                    @error('email')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="password" name="password" class="form-control" id="password" placeholder="Your Password">
+                                    <input type="password" value="{{old('password')}}" name="password" class="form-control" id="password" placeholder="Your Password">
                                     <label for="name">Your Password</label>
+                                    @error('password')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
                                     <select name="cid" class="form-control">
-                                        <option>Select Country</option>
+                                        <option value="">Select Country</option>
                                         @if(!empty($data))
-                                            @foreach($data as $d)
-                                            <option value="{{$d->id}}">{{$d->cnm}}</option>
-                                            @endforeach
+                                        @foreach($data as $d)
+                                        <option value="{{$d->id}}">{{$d->cnm}}</option>
+                                        @endforeach
                                         @endif
                                     </select>
                                     <label for="subject">Country</label>
+                                    @error('cid')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-12">
                                 <label for="message">Gender : </label>
                                 Male :<input type="radio" name="gender" value="Male">
                                 Female :<input type="radio" name="gender" value="Female">
+                                @error('gender')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="col-12">
                                 <label for="message">Launguages : </label>
                                 Hindi :<input type="checkbox" name="lag[]" value="Hindi">
                                 English :<input type="checkbox" name="lag[]" value="English">
                                 Gujarati :<input type="checkbox" name="lag[]" value="Gujarati">
+                                @error('lag')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <div class="col-md-12">
                                 <div class="form-floating">
                                     <input type="file" name="img" class="form-control" id="img" placeholder="Your Image">
                                     <label for="name">Upload Profile Image</label>
+                                    @error('img')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -96,7 +120,7 @@
                     </form>
                 </div>
             </div>
-           
+
         </div>
     </div>
 </div>

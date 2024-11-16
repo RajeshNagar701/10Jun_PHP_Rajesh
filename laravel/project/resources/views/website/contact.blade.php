@@ -64,21 +64,34 @@
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" name="name" id="name" placeholder="Your Name">
+                                        <input type="text" class="form-control" value="{{old('name')}}" name="name" id="name" placeholder="Your Name">
                                         <label for="name">Your Name</label>
+                                        @error('name')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+
+
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                        <input type="email" class="form-control" name="email" id="email" placeholder="Your Email">
+                                        <input type="text" class="form-control" value="{{old('email')}}" name="email" id="email" placeholder="Your Email">
                                         <label for="email">Your Email</label>
+                                        @error('email')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
                 
                                 <div class="col-12">
                                     <div class="form-floating">
-                                        <textarea class="form-control" name="comment" placeholder="Leave a message here" id="message" style="height: 100px"></textarea>
+                                        <textarea class="form-control" name="comment"  placeholder="Leave a message here" id="message" style="height: 100px">
+                                            {{old('comment')}}
+                                        </textarea>
                                         <label for="message">Message</label>
+                                        @error('comment')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-12">

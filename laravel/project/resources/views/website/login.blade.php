@@ -28,12 +28,21 @@
                     <form action="{{url('/auth_login')}}" method="post">
                         @csrf
                         <div class="row g-3">
+                            @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            @endif
 
                             <div class="col-12 col-sm-12">
-                                <input type="email" name="email" class="form-control border-0" placeholder="Your Email" style="height: 55px;">
+                                <input type="email" value="{{old('email')}}" name="email" class="form-control border-0" placeholder="Your Email" style="height: 55px;">
                             </div>
                             <div class="col-12 col-sm-12">
-                                <input type="password" name="password" class="form-control border-0" placeholder="Your Password" style="height: 55px;">
+                                <input type="password"  value="{{old('password')}}" name="password" class="form-control border-0" placeholder="Your Password" style="height: 55px;">
                             </div>
                             <div class="col-12 col-sm-12">
                                 <button class="btn btn-primary w-100 py-3" type="submit">Login</button>
