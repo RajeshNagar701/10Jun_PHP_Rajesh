@@ -118,7 +118,7 @@ function active($currect_page){
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">My Account</a>
                     <div class="dropdown-menu rounded-0 rounded-bottom m-0">
-                        <a href="feature" class="dropdown-item <?php active("Profile")?>">Profile</a>
+                        <a href="userprofile" class="dropdown-item <?php active("userprofile")?>">Profile</a>
                         <a href="userlogout" class="dropdown-item <?php active("logout")?>">Logout</a>
                     </div>
                 </div>

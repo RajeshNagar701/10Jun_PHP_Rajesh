@@ -169,9 +169,20 @@ class userController extends Controller
      * @param  \App\Models\user  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(user $user)
+
+
+    public function userprofile()
     {
-        //
+        $id=session()->get('userid');
+        $data=user::where('id',$id)->first();
+        return view('website.userprofile',['user'=>$data]);
+    }
+
+    public function edit(user $user,$id)
+    {
+        $data=user::find($id);
+        $country=contry::all();
+        return view('website.edituser',['user'=>$data,'country'=>$country]);
     }
 
     /**
@@ -181,9 +192,40 @@ class userController extends Controller
      * @param  \App\Models\user  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, user $user)
+    public function update(Request $request, user $user,$id)
     {
-        //
+        /*
+        $validated = $request->validate([
+            'name'=>'required|alpha:ascii',
+            'email'=> 'required|email',
+            'mobile'=> 'required|digits:10',
+            'gender' => ['required', 'in:Male,Female'],
+            'lag' => 'required',
+            'cid' => 'required',
+            'img' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        ]);
+        */
+        $data=user::find($id);
+
+        $data->name=$request->name;
+        $data->mobile=$request->mobile;
+        $data->email=$request->email;
+        $data->gender=$request->gender;
+        $data->lag=implode(",",$request->lag);
+        $data->cid=$request->cid;
+
+        // image upload
+        if($request->hasFile('img'))
+        {
+            $old_img=$data->img;
+            $file=$request->file('img');
+            $filename=time()."_img.".$request->file('img')->getClientOriginalExtension(); // get file ext
+            $file->move('website/upload/user/',$filename); // move file in public path
+            $data->img=$filename;
+            unlink('website/upload/user/'.$old_img);
+        }
+        $data->update();
+        return redirect('/userprofile');
     }
 
     /**

@@ -35,6 +35,11 @@ Route::post('/auth_login',[userController::class,'auth_login']);
 
 Route::get('/userlogout',[userController::class,'userlogout']);
 
+Route::get('/userprofile',[userController::class,'userprofile']);
+
+Route::get('/edituser/{id}',[userController::class,'edit']);
+Route::post('/edituser/{id}',[userController::class,'update']);
+
 
 Route::get('/about', function () {
     return view('website.about');
@@ -46,11 +51,6 @@ Route::get('/appointment', function () {
 
 Route::get('/contact',[contactController::class,'create']);
 Route::post('/contact',[contactController::class,'store']);
-
-
-Route::get('/feature', function () {
-    return view('website.feature');
-});
 
 Route::get('/service', function () {
     return view('website.service');
