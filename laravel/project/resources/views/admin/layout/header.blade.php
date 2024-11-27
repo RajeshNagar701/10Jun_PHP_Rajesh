@@ -1,20 +1,4 @@
 <?php
-if(session()->get('adminid'))
-{
-
-}
-else
-{
-    echo "<script>
-            alert('Login First !');
-            window.location='/admin-login';
-        </script>";
-}
-
-
-
-
-
 function active($currect_page){
 	  $url_array =  explode('/', $_SERVER['REQUEST_URI']) ;
 	  $url = end($url_array);  
