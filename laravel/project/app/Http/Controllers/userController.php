@@ -6,6 +6,11 @@ use App\Models\user;
 use App\Models\contry;
 use Illuminate\Http\Request;
 
+// import for mail
+use App\Mail\welcome_mail;
+use Illuminate\Support\Facades\Mail;
+
+
 use Illuminate\Support\Facades\Hash;
 
 class userController extends Controller
@@ -134,7 +139,7 @@ class userController extends Controller
 
         $data->name=$request->name;
         $data->mobile=$request->mobile;
-        $data->email=$request->email;
+ $email=$data->email=$request->email;
         $data->password=Hash::make($request->password);
         $data->gender=$request->gender;
         $data->lag=implode(",",$request->lag);
@@ -147,6 +152,10 @@ class userController extends Controller
         $data->img=$filename;
 
         $data->save();
+
+        $emaildata=array("name"=>$request->name,"email"=>$request->email);
+        Mail::to($email)->send(new welcome_mail($emaildata));
+
         return redirect('/signup');
 
     }
