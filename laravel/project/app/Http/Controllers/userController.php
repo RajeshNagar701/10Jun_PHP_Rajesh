@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 
 // import for mail
 use App\Mail\welcome_mail;
+use App\Mail\forgot;
+
 use Illuminate\Support\Facades\Mail;
 
 
@@ -27,26 +29,23 @@ class userController extends Controller
 
     public function auth_login(Request $request)
     {
-    
+
         $validated = $request->validate([
-            'email'=> 'required|email',
-            'password'=> 'required|min:3|max:12'
+            'email' => 'required|email',
+            'password' => 'required|min:3|max:12'
         ]);
 
-        $email=$request->email;
-        $password=$request->password;
-        
-        $data=user::where('email',$email)->first();  // get() array / first() single data 
-        if($data)
-        {
-            if(Hash::check($password,$data->password))
-            {
-                if($data->status=="Unblock")
-                {
+        $email = $request->email;
+        $password = $request->password;
+
+        $data = user::where('email', $email)->first();  // get() array / first() single data 
+        if ($data) {
+            if (Hash::check($password, $data->password)) {
+                if ($data->status == "Unblock") {
                     // create
-                    session()->put('userid',$data->id);
-					session()->put('email',$data->email);
-					session()->put('name',$data->name);
+                    session()->put('userid', $data->id);
+                    session()->put('email', $data->email);
+                    session()->put('name', $data->name);
 
                     //session()->get('name') // name session print
                     //session()->pull('name') // session delete
@@ -55,54 +54,129 @@ class userController extends Controller
                     alert('Login Suuceess !');
                     window.location='/';
                     </script>";
-                }
-                else
-                {
+                } else {
                     echo "<script> 
                         alert('Blocked !'); 
                         window.location='/login';
                     </script>";
-                   
                 }
-            }
-            else
-            {
+            } else {
                 echo "<script> 
                         alert('Password not match !'); 
                         window.location='/login';
                     </script>";
-                   
-               
             }
-        }
-        else
-        {
+        } else {
             echo "<script>
                 alert('Username does not exits !');
                 window.location='/login';
              </script>";
-            
         }
-
     }
-    
-    function userlogout(){
+
+    function userlogout()
+    {
 
         session()->pull('userid');
-		session()->pull('email');
-		session()->pull('name');
+        session()->pull('email');
+        session()->pull('name');
         echo "<script>
             alert('User Logout Success !');
             window.location='/index';
         </script>";
-
     }
-
-
-    public function index()
+    public function forgot()
     {
-        //
+        return view('website.forgot');
     }
+
+    public function insertforgot(Request $request)
+    {
+        $validated = $request->validate([
+            'email' => 'required|email',
+        ]);
+
+        $email = $request->email;
+
+        $data = user::where('email', $email)->first();  // get() array / first() single data 
+        if ($data) {
+
+            $otp=rand(100000,999999);
+            session()->put('forgot_otp', $otp);
+            session()->put('forgot_id', $data->id);
+
+            $forgotdata = array("forgot_otp" => session()->get('forgot_otp'));
+            Mail::to($email)->send(new forgot($forgotdata));
+            echo "<script> 
+                    alert('One time otp send !'); 
+                    window.location='/enterotp';
+                </script>";
+
+        } else {
+            echo "<script> 
+                        alert('Email id doesn't exist !'); 
+                        window.location='/forgot';
+                    </script>";
+        }
+    }
+
+    public function enterotp()
+    {
+        return view('website.enterotp');
+    }
+
+    public function insertenterotp(Request $request)
+    {
+        $validated = $request->validate([
+            'otp' => 'required',
+        ]);
+
+        $otp = $request->otp;
+        if ($otp == session()->get('forgot_otp')) {
+
+            session()->pull('forgot_otp');
+            session()->put('reset_sess', "jsut");
+
+            echo "<script> 
+                    alert('One matched !'); 
+                    window.location='/reset_pass';
+                </script>";
+
+        } else {
+            echo "<script> 
+                        alert('OTP NOT MATCH !'); 
+                        window.location='/enterotp';
+                    </script>";
+        }
+    }
+
+    public function reset_pass()
+    {
+        return view('website.reset_pass');
+    }
+
+    public function insertreset_pass(Request $request)
+    {
+        $validated = $request->validate([
+            'new_pass' => 'required',
+        ]);
+
+        $data = user::where('id', '=',session()->get('forgot_id'))->first();
+        $data->password = Hash::make($request->new_pass);
+        $data->update();
+        session()->pull('reset_sess');
+        session()->pull('forgot_id');
+
+        echo "<script> 
+                alert('Password reset Success!'); 
+                window.location='/login';
+            </script>";
+
+        
+    }
+
+    
+    public function index() {}
 
     /**
      * Show the form for creating a new resource.
@@ -111,8 +185,8 @@ class userController extends Controller
      */
     public function create()
     {
-        $data=contry::all();
-        return view('website.signup',['data'=>$data]);
+        $data = contry::all();
+        return view('website.signup', ['data' => $data]);
     }
 
     /**
@@ -124,10 +198,10 @@ class userController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name'=>'required|alpha:ascii',
-            'email'=> 'required|email',
-            'mobile'=> 'required|digits:10',
-            'password'=> 'required|min:3|max:12',
+            'name' => 'required|alpha:ascii',
+            'email' => 'required|email',
+            'mobile' => 'required|digits:10',
+            'password' => 'required|min:3|max:12',
             'gender' => ['required', 'in:Male,Female'],
             'lag' => 'required',
             'cid' => 'required',
@@ -135,29 +209,28 @@ class userController extends Controller
         ]);
 
 
-        $data=new user;
+        $data = new user;
 
-        $data->name=$request->name;
-        $data->mobile=$request->mobile;
- $email=$data->email=$request->email;
-        $data->password=Hash::make($request->password);
-        $data->gender=$request->gender;
-        $data->lag=implode(",",$request->lag);
-        $data->cid=$request->cid;
+        $data->name = $request->name;
+        $data->mobile = $request->mobile;
+        $email = $data->email = $request->email;
+        $data->password = Hash::make($request->password);
+        $data->gender = $request->gender;
+        $data->lag = implode(",", $request->lag);
+        $data->cid = $request->cid;
 
         // image upload
-        $file=$request->file('img');
-        $filename=time()."_img.".$request->file('img')->getClientOriginalExtension(); // get file ext
-        $file->move('website/upload/user/',$filename); // move file in public path
-        $data->img=$filename;
+        $file = $request->file('img');
+        $filename = time() . "_img." . $request->file('img')->getClientOriginalExtension(); // get file ext
+        $file->move('website/upload/user/', $filename); // move file in public path
+        $data->img = $filename;
 
         $data->save();
 
-        $emaildata=array("name"=>$request->name,"email"=>$request->email);
+        $emaildata = array("name" => $request->name, "email" => $request->email);
         Mail::to($email)->send(new welcome_mail($emaildata));
 
         return redirect('/signup');
-
     }
 
     /**
@@ -168,8 +241,8 @@ class userController extends Controller
      */
     public function show(user $user)
     {
-        $data=user::all();
-        return view('admin.manage_user',['user'=>$data]);
+        $data = user::all();
+        return view('admin.manage_user', ['user' => $data]);
     }
 
     /**
@@ -182,16 +255,16 @@ class userController extends Controller
 
     public function userprofile()
     {
-        $id=session()->get('userid');
-        $data=user::where('id',$id)->first();
-        return view('website.userprofile',['user'=>$data]);
+        $id = session()->get('userid');
+        $data = user::where('id', $id)->first();
+        return view('website.userprofile', ['user' => $data]);
     }
 
-    public function edit(user $user,$id)
+    public function edit(user $user, $id)
     {
-        $data=user::find($id);
-        $country=contry::all();
-        return view('website.edituser',['user'=>$data,'country'=>$country]);
+        $data = user::find($id);
+        $country = contry::all();
+        return view('website.edituser', ['user' => $data, 'country' => $country]);
     }
 
     /**
@@ -201,7 +274,7 @@ class userController extends Controller
      * @param  \App\Models\user  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, user $user,$id)
+    public function update(Request $request, user $user, $id)
     {
         /*
         $validated = $request->validate([
@@ -214,24 +287,23 @@ class userController extends Controller
             'img' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
         */
-        $data=user::find($id);
+        $data = user::find($id);
 
-        $data->name=$request->name;
-        $data->mobile=$request->mobile;
-        $data->email=$request->email;
-        $data->gender=$request->gender;
-        $data->lag=implode(",",$request->lag);
-        $data->cid=$request->cid;
+        $data->name = $request->name;
+        $data->mobile = $request->mobile;
+        $data->email = $request->email;
+        $data->gender = $request->gender;
+        $data->lag = implode(",", $request->lag);
+        $data->cid = $request->cid;
 
         // image upload
-        if($request->hasFile('img'))
-        {
-            $old_img=$data->img;
-            $file=$request->file('img');
-            $filename=time()."_img.".$request->file('img')->getClientOriginalExtension(); // get file ext
-            $file->move('website/upload/user/',$filename); // move file in public path
-            $data->img=$filename;
-            unlink('website/upload/user/'.$old_img);
+        if ($request->hasFile('img')) {
+            $old_img = $data->img;
+            $file = $request->file('img');
+            $filename = time() . "_img." . $request->file('img')->getClientOriginalExtension(); // get file ext
+            $file->move('website/upload/user/', $filename); // move file in public path
+            $data->img = $filename;
+            unlink('website/upload/user/' . $old_img);
         }
         $data->update();
         return redirect('/userprofile');
@@ -243,12 +315,12 @@ class userController extends Controller
      * @param  \App\Models\user  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(user $user,$id)
+    public function destroy(user $user, $id)
     {
-        $data=user::find($id);  // find data from table as per id
-        $del_img=$data->img;
+        $data = user::find($id);  // find data from table as per id
+        $del_img = $data->img;
         $data->delete();    // then delete data
-        unlink('website/upload/user/'.$del_img);
+        unlink('website/upload/user/' . $del_img);
 
         return redirect('/manage_user'); // redirect after delete
     }

@@ -29,6 +29,14 @@ Route::get('/signup',[userController::class,'create'])->middleware('before_w');
 Route::post('/insertsignup',[userController::class,'store'])->middleware('before_w');
 Route::get('/login',[userController::class,'login'])->middleware('before_w');
 Route::post('/auth_login',[userController::class,'auth_login'])->middleware('before_w');
+Route::get('/forgot',[userController::class,'forgot'])->middleware('before_w');
+Route::post('/insertforgot',[userController::class,'insertforgot'])->middleware('before_w');
+
+Route::get('/enterotp',[userController::class,'enterotp'])->middleware('before_w');
+Route::post('/insertenterotp',[userController::class,'insertenterotp'])->middleware('before_w');
+
+Route::get('/reset_pass',[userController::class,'reset_pass'])->middleware('before_w');
+Route::post('/insertreset_pass',[userController::class,'insertreset_pass'])->middleware('before_w');
 
 Route::get('/userlogout',[userController::class,'userlogout'])->middleware('after_w');
 Route::get('/userprofile',[userController::class,'userprofile'])->middleware('after_w');
